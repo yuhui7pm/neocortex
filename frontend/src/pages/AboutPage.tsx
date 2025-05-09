@@ -1,5 +1,5 @@
-import Layout from '../components/Layout';
-import posts from '../data/posts';
+import { Layout } from '../components/Layout';
+import { posts } from '../data/posts';
 
 export default function AboutPage() {
   return (
@@ -9,7 +9,7 @@ export default function AboutPage() {
       subtitle="This is what I do"
       backgroundImage="https://images.unsplash.com/photo-1470219556762-1771e7f9427d?q=80&w=2070"
     >
-      <div className="prose max-w-none">
+      <div className="max-w-none prose">
         <p>
           Lorem ipsum dolor sit amet, consectetur adipisicing elit. Saepe
           nostrum ullam eveniet pariatur voluptates odit, fuga atque ea nobis

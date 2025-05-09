@@ -1,8 +1,8 @@
 import { useMemo } from 'react';
 import { useParams, Navigate } from 'react-router-dom';
 
-import BlogPost from '../components/BlogPost';
-import Layout from '../components/Layout';
+import { BlogPost } from '../components/BlogPost';
+import { Layout } from '../components/Layout';
 import { posts } from '../data/posts';
 
 function CategoryPage() {

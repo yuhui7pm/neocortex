@@ -1,6 +1,6 @@
 import type { Post } from '../components/BlogPost';
 
-export const posts: Post[] = [
+const posts: Post[] = [
   {
     id: '1',
     title: 'Getting Started with React',
@@ -169,3 +169,5 @@ Vite represents the next generation of frontend build tools and is worth conside
     `,
   },
 ];
+
+export { posts };

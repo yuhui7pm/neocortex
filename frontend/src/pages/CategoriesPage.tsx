@@ -1,17 +1,15 @@
-import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
-import posts from '../data/posts';
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function CategoriesPage() {
+import { Layout } from '../components/Layout';
+import { posts } from '../data/posts';
+
+export function CategoriesPage() {
   const categories = useMemo(() => {
-    const categoryCounts = posts.reduce(
-      (acc, post) => {
-        acc[post.category] = (acc[post.category] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>,
-    );
+    const categoryCounts = posts.reduce<Record<string, number>>((acc, post) => {
+      acc[post.category] = (acc[post.category] || 0) + 1;
+      return acc;
+    }, {});
 
     return Object.entries(categoryCounts).sort((a, b) =>
       a[0].localeCompare(b[0]),
@@ -28,7 +26,7 @@ export default function CategoriesPage() {
       <div>
         <div className="mb-12 text-center">
           {categories.map(([category, count]) => (
-            <div key={category} className="border-gray-200 mb-8 border-b pb-6">
+            <div key={category} className="mb-8 border-b border-gray-200 pb-6">
               <h2 className="mb-1 text-2xl font-normal">
                 <Link
                   to={`/category/${category.toLowerCase()}`}
@@ -37,7 +35,7 @@ export default function CategoriesPage() {
                   {category}
                 </Link>
               </h2>
-              <div className="text-gray-500 text-sm">
+              <div className="text-sm text-gray-500">
                 {count} {count === 1 ? 'post' : 'posts'}
               </div>
             </div>
@@ -47,3 +45,5 @@ export default function CategoriesPage() {
     </Layout>
   );
 }
+
+export default CategoriesPage;

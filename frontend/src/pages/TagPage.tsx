@@ -1,14 +1,17 @@
-import { useParams, Navigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import BlogPost from '../components/BlogPost';
-import posts from '../data/posts';
 import { useMemo } from 'react';
+import { useParams, Navigate } from 'react-router-dom';
 
-export default function TagPage() {
+import { BlogPost } from '../components/BlogPost';
+import { Layout } from '../components/Layout';
+import { posts } from '../data/posts';
+
+function TagPage() {
   const { tagSlug } = useParams<{ tagSlug: string }>();
 
   const tagPosts = useMemo(() => {
-    if (!tagSlug) return [];
+    if (!tagSlug) {
+      return [];
+    }
 
     return posts.filter((post) =>
       post.tags.some((tag) => tag.toLowerCase() === tagSlug.toLowerCase()),
@@ -19,16 +22,15 @@ export default function TagPage() {
     return <Navigate to="/" />;
   }
 
-  // 获取标签的正确大小写形式
-  const tagName =
-    tagPosts[0].tags.find(
-      (tag) => tag.toLowerCase() === tagSlug.toLowerCase(),
-    ) || tagSlug;
+  // 确保类型安全
+  const formattedTag = tagSlug
+    ? tagSlug[0].toUpperCase() + tagSlug.slice(1)
+    : '';
 
   return (
     <Layout
       posts={posts}
-      title={`Tag: ${tagName}`}
+      title={`Tag: ${formattedTag}`}
       subtitle={`${tagPosts.length} ${tagPosts.length === 1 ? 'post' : 'posts'}`}
       backgroundImage="https://images.unsplash.com/photo-1518020382113-a7e8fc38eac9?q=80&w=2017"
     >
@@ -40,3 +42,6 @@ export default function TagPage() {
     </Layout>
   );
 }
+
+export { TagPage };
+export default TagPage;

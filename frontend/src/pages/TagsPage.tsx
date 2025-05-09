@@ -1,18 +1,16 @@
-import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
-import posts from '../data/posts';
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
-export default function TagsPage() {
+import { Layout } from '../components/Layout';
+import { posts } from '../data/posts';
+
+function TagsPage() {
   const tags = useMemo(() => {
     const allTags = posts.flatMap((post) => post.tags);
-    const tagCounts = allTags.reduce(
-      (acc, tag) => {
-        acc[tag] = (acc[tag] || 0) + 1;
-        return acc;
-      },
-      {} as Record<string, number>,
-    );
+    const tagCounts = allTags.reduce<Record<string, number>>((acc, tag) => {
+      acc[tag] = (acc[tag] || 0) + 1;
+      return acc;
+    }, {});
 
     return Object.entries(tagCounts).sort((a, b) => a[0].localeCompare(b[0]));
   }, []);
@@ -36,7 +34,7 @@ export default function TagsPage() {
                   {tag}
                 </Link>
               </h2>
-              <div className="text-gray-500 text-sm">
+              <div className="text-sm text-gray-500">
                 {count} {count === 1 ? 'post' : 'posts'}
               </div>
             </div>
@@ -46,3 +44,6 @@ export default function TagsPage() {
     </Layout>
   );
 }
+
+export { TagsPage };
+export default TagsPage;

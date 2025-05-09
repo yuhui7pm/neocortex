@@ -1,4 +1,6 @@
-import { useState, useEffect } from 'react';
+import type { FC } from 'react';
+
+import { useEffect, useState } from 'react';
 import { Link } from 'react-router-dom';
 
 type HeaderProps = {
@@ -12,13 +14,17 @@ type HeaderProps = {
 const TEXT_WHITE = 'text-white';
 const TEXT_GRAY_800 = 'text-gray-800';
 const TRANSITION_OPACITY = 'transition-opacity hover:opacity-70';
+const DEFAULT_BG_IMAGE =
+  'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1920';
+const DEFAULT_TITLE = 'Clean Blog';
+const DEFAULT_SUBTITLE = 'A modern stylish blog';
 
-function Header({
-  title = 'Clean Blog',
-  subtitle = 'A modern stylish blog',
-  backgroundImage = 'https://images.unsplash.com/photo-1451337516015-6b6e9a44a8a3?q=80&w=1920',
+const Header: FC<HeaderProps> = ({
+  title = DEFAULT_TITLE,
+  subtitle = DEFAULT_SUBTITLE,
+  backgroundImage = DEFAULT_BG_IMAGE,
   isPostPage = false,
-}: HeaderProps) {
+}) => {
   const [scrolled, setScrolled] = useState(false);
 
   // 检测滚动位置更新导航栏样式
@@ -49,7 +55,7 @@ function Header({
         }}
       />
       {/* 背景遮罩 */}
-      <div className="bg-black absolute inset-0 h-[70vh] opacity-50"></div>
+      <div className="absolute inset-0 h-[70vh] bg-black opacity-50"></div>
 
       {/* 导航栏 */}
       <div
@@ -114,16 +120,15 @@ function Header({
       </div>
 
       {/* 标题区域 */}
-      <div className="relative flex h-[70vh] items-center justify-center">
-        <div className="text-white z-10 px-4 text-center">
+      <div className="relative h-[70vh] flex items-center justify-center">
+        <div className="z-10 px-4 text-center text-white">
           <h1 className="text-5xl font-normal sm:text-6xl">{title}</h1>
-          <hr className="border-white mx-auto my-6 w-16 border-t-2" />
+          <hr className="mx-auto my-6 w-16 border-t-2 border-white" />
           <p className="text-xl font-light">{subtitle}</p>
         </div>
       </div>
     </header>
   );
-}
+};
 
 export { Header };
-export default Header;

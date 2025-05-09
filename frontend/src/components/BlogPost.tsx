@@ -1,3 +1,5 @@
+import type { FC } from 'react';
+
 import { Link } from 'react-router-dom';
 
 export type Post = {
@@ -16,8 +18,11 @@ type BlogPostProps = {
   isListItem?: boolean;
 };
 
+// Constants for reusable CSS classes
+const LINK_CLASSES = 'hover:text-gray-600 text-gray-800 no-underline';
+
 // 格式化日期为月份 日期 年份
-function formatDate(dateString: string) {
+function formatDate(dateString: string): string {
   const date = new Date(dateString);
   return date.toLocaleDateString('en-US', {
     month: 'long',
@@ -26,12 +31,12 @@ function formatDate(dateString: string) {
   });
 }
 
-function BlogPost({
+const BlogPost: FC<BlogPostProps> = ({
   post,
   isExcerpt = true,
   isHomePage = false,
   isListItem = false,
-}: BlogPostProps) {
+}) => {
   const { id, title, date, content } = post;
   const formattedDate = formatDate(date);
 
@@ -46,15 +51,12 @@ function BlogPost({
     return (
       <article className="mb-10 text-center">
         <h2 className="text-3xl font-normal">
-          <Link
-            to={`/post/${id}`}
-            className="hover:text-gray-600 text-gray-800 no-underline"
-          >
+          <Link to={`/post/${id}`} className={LINK_CLASSES}>
             {title}
           </Link>
         </h2>
-        <div className="text-gray-500 mb-2 mt-1">{formattedDate}</div>
-        <hr className="border-gray-200 mx-auto my-8 w-full border-t" />
+        <div className="mb-2 mt-1 text-gray-500">{formattedDate}</div>
+        <hr className="mx-auto my-8 w-full border-t border-gray-200" />
       </article>
     );
   }
@@ -64,14 +66,11 @@ function BlogPost({
     return (
       <article className="mb-10 text-center">
         <h2 className="mb-1 text-2xl font-normal">
-          <Link
-            to={`/post/${id}`}
-            className="hover:text-gray-600 text-gray-800 no-underline"
-          >
+          <Link to={`/post/${id}`} className={LINK_CLASSES}>
             {title}
           </Link>
         </h2>
-        <div className="text-gray-500 text-sm">{formattedDate}</div>
+        <div className="text-sm text-gray-500">{formattedDate}</div>
       </article>
     );
   }
@@ -81,16 +80,16 @@ function BlogPost({
     <article className="mb-16">
       {isExcerpt ? (
         <div className="text-center">
-          <p className="text-gray-700 mb-4">{excerpt}</p>
+          <p className="mb-4 text-gray-700">{excerpt}</p>
           <Link
             to={`/post/${id}`}
-            className="hover:bg-gray-100 text-gray-600 border-gray-300 inline-block rounded border px-4 py-2"
+            className="inline-block border border-gray-300 rounded px-4 py-2 text-gray-600 hover:bg-gray-100"
           >
             Read More
           </Link>
         </div>
       ) : (
-        <div className="prose prose-lg text-gray-700 mx-auto">
+        <div className="prose-lg mx-auto text-gray-700 prose">
           <div
             dangerouslySetInnerHTML={{
               __html: content
@@ -105,7 +104,6 @@ function BlogPost({
       )}
     </article>
   );
-}
+};
 
 export { BlogPost };
-export default BlogPost;

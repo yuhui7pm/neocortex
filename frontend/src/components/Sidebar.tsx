@@ -1,5 +1,5 @@
-import { Link } from 'react-router-dom';
 import { useMemo } from 'react';
+import { Link } from 'react-router-dom';
 
 import type { Post } from './BlogPost';
 
@@ -40,15 +40,15 @@ function Sidebar({ posts }: SidebarProps) {
   }, [posts]);
 
   return (
-    <aside className="space-y-12 text-left">
+    <aside className="text-left space-y-12">
       <div>
-        <h3 className="text-gray-700 mb-4 text-lg font-normal">Recent Posts</h3>
+        <h3 className="mb-4 text-lg text-gray-700 font-normal">Recent Posts</h3>
         <ul className="list-none space-y-2">
           {recentPosts.map((post) => (
             <li key={post.id}>
               <Link
                 to={`/post/${post.id}`}
-                className="hover:text-gray-900 text-gray-600"
+                className="text-gray-600 hover:text-gray-900"
               >
                 {post.title}
               </Link>
@@ -58,30 +58,30 @@ function Sidebar({ posts }: SidebarProps) {
       </div>
 
       <div>
-        <h3 className="text-gray-700 mb-4 text-lg font-normal">Categories</h3>
+        <h3 className="mb-4 text-lg text-gray-700 font-normal">Categories</h3>
         <ul className="list-none">
           {categories.map(([category, count]) => (
             <li key={category} className="mb-1">
               <Link
                 to={`/category/${category.toLowerCase()}`}
-                className="hover:text-gray-900 text-gray-600"
+                className="text-gray-600 hover:text-gray-900"
               >
                 {category}
               </Link>
-              <span className="text-gray-400 ml-1 text-sm">({count})</span>
+              <span className="ml-1 text-sm text-gray-400">({count})</span>
             </li>
           ))}
         </ul>
       </div>
 
       <div>
-        <h3 className="text-gray-700 mb-4 text-lg font-normal">Tags</h3>
+        <h3 className="mb-4 text-lg text-gray-700 font-normal">Tags</h3>
         <div className="flex flex-wrap gap-3">
           {tags.map(([tag]) => (
             <Link
               key={tag}
               to={`/tag/${tag.toLowerCase()}`}
-              className="bg-white hover:bg-gray-50 text-gray-600 border-gray-200 inline-block border px-3 py-1 text-sm"
+              className="inline-block border border-gray-200 bg-white px-3 py-1 text-sm text-gray-600 hover:bg-gray-50"
             >
               {tag}
             </Link>
@@ -93,4 +93,3 @@ function Sidebar({ posts }: SidebarProps) {
 }
 
 export { Sidebar };
-export default Sidebar;

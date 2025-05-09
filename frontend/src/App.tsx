@@ -1,13 +1,13 @@
-import { Routes, Route } from 'react-router-dom';
+import { Route, Routes } from 'react-router-dom';
 
-import AboutPage from './pages/AboutPage';
-import ArchivesPage from './pages/ArchivesPage';
-import CategoriesPage from './pages/CategoriesPage';
-import CategoryPage from './pages/CategoryPage';
-import HomePage from './pages/HomePage';
-import PostPage from './pages/PostPage';
-import TagPage from './pages/TagPage';
-import TagsPage from './pages/TagsPage';
+import { AboutPage } from './pages/AboutPage';
+import { ArchivesPage } from './pages/ArchivesPage';
+import { CategoriesPage } from './pages/CategoriesPage';
+import { CategoryPage } from './pages/CategoryPage';
+import { HomePage } from './pages/HomePage';
+import { PostPage } from './pages/PostPage';
+import { TagPage } from './pages/TagPage';
+import { TagsPage } from './pages/TagsPage';
 
 import './App.css';
 

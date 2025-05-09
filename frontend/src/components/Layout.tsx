@@ -1,7 +1,8 @@
-import type { ReactNode } from 'react';
+import type { FC, ReactNode } from 'react';
 
-import Footer from './Footer';
-import Header from './Header';
+import { Footer } from './Footer';
+import { Header } from './Header';
+
 import type { Post } from './BlogPost';
 
 type LayoutProps = {
@@ -10,15 +11,23 @@ type LayoutProps = {
   title?: string;
   subtitle?: string;
   backgroundImage?: string;
+  isPostPage?: boolean;
 };
 
-function Layout({ children, title, subtitle, backgroundImage }: LayoutProps) {
+const Layout: FC<LayoutProps> = ({
+  children,
+  title,
+  subtitle,
+  backgroundImage,
+  isPostPage,
+}) => {
   return (
-    <div className="bg-white flex min-h-screen flex-col">
+    <div className="min-h-screen flex flex-col bg-white">
       <Header
         title={title}
         subtitle={subtitle}
         backgroundImage={backgroundImage}
+        isPostPage={isPostPage}
       />
 
       <main className="flex-grow">
@@ -30,7 +39,6 @@ function Layout({ children, title, subtitle, backgroundImage }: LayoutProps) {
       <Footer />
     </div>
   );
-}
+};
 
 export { Layout };
-export default Layout;

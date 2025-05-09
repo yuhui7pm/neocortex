@@ -1,71 +1,72 @@
-import { Link } from 'react-router-dom';
-import Layout from '../components/Layout';
-import posts from '../data/posts';
-import { useMemo } from 'react';
+import type { FC } from 'react';
 
-export default function ArchivesPage() {
+import { useMemo } from 'react';
+// import { Link } from 'react-router-dom';
+
+import { Layout } from '../components/Layout';
+import { posts } from '../data/posts';
+
+import type { Post } from '../components/BlogPost';
+
+const ArchivesPage: FC = () => {
   const archivesByYear = useMemo(() => {
-    const archives: Record<string, typeof posts> = {};
+    const archives: Record<string, Post[]> = {};
 
     posts.forEach((post) => {
-      const year = new Date(post.date).getFullYear().toString();
+      const date = new Date(post.date);
+      const year = date.getFullYear().toString();
+
       if (!archives[year]) {
         archives[year] = [];
       }
+
       archives[year].push(post);
     });
 
-    // Sort posts within each year by date (newest first)
+    // 按年份降序排列
     Object.keys(archives).forEach((year) => {
       archives[year].sort(
         (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
       );
     });
 
-    // Return years sorted in descending order
-    return Object.entries(archives).sort(
-      ([yearA], [yearB]) => Number(yearB) - Number(yearA),
-    );
+    return archives;
   }, []);
 
   return (
     <Layout
       posts={posts}
       title="Archives"
-      subtitle="Browse through all posts"
-      backgroundImage="https://images.unsplash.com/photo-1481627834876-b7833e8f5570?q=80&w=2028"
+      subtitle="All posts by year"
+      backgroundImage="https://images.unsplash.com/photo-1462331940025-496dfbfc7564?q=80&w=2027"
     >
-      {archivesByYear.map(([year, yearPosts]) => (
-        <div key={year} className="mb-14">
-          <h2 className="text-gray-800 mb-8 text-center text-3xl font-normal">
-            {year}
-          </h2>
-          <div className="space-y-6">
-            {yearPosts.map((post) => {
-              // 格式化日期为月日格式
-              const date = new Date(post.date);
-              const formattedDate = date.toLocaleDateString('en-US', {
-                month: 'long',
-                day: 'numeric',
-              });
-
-              return (
-                <div key={post.id} className="text-center">
-                  <h3 className="mb-1 text-xl font-normal">
-                    <Link
-                      to={`/post/${post.id}`}
-                      className="text-gray-700 hover:text-gray-900"
-                    >
-                      {post.title}
-                    </Link>
-                  </h3>
-                  <div className="text-gray-500 text-sm">{formattedDate}</div>
-                </div>
-              );
-            })}
+      {/* 按年份降序排列 */}
+      {Object.keys(archivesByYear)
+        .sort((a, b) => parseInt(b, 10) - parseInt(a, 10))
+        .map((year) => (
+          <div key={year} className="mb-10">
+            <h2 className="mb-4 text-2xl font-normal">{year}</h2>
+            {archivesByYear[year].map((post) => (
+              <div key={post.id} className="mb-4">
+                <span className="inline-block w-24 text-gray-500">
+                  {new Date(post.date).toLocaleDateString('en-US', {
+                    month: 'short',
+                    day: 'numeric',
+                  })}
+                </span>
+                <a
+                  href={`/post/${post.id}`}
+                  className="text-gray-800 hover:text-gray-600"
+                >
+                  {post.title}
+                </a>
+              </div>
+            ))}
           </div>
-        </div>
-      ))}
+        ))}
     </Layout>
   );
-}
+};
+
+export { ArchivesPage };
+export default ArchivesPage;

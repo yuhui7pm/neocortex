@@ -1,8 +1,10 @@
-import Layout from '../components/Layout';
-import BlogPost from '../components/BlogPost';
-import posts from '../data/posts';
+import type { FC } from 'react';
 
-export default function HomePage() {
+import { BlogPost } from '../components/BlogPost';
+import { Layout } from '../components/Layout';
+import { posts } from '../data/posts';
+
+const HomePage: FC = () => {
   // 按日期排序文章（最新的在前面）
   const sortedPosts = [...posts].sort(
     (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime(),
@@ -20,13 +22,15 @@ export default function HomePage() {
       ))}
 
       <div className="my-12 text-center">
-        <a
-          href="#"
-          className="border-gray-300 hover:bg-gray-100 text-gray-600 inline-block rounded border px-5 py-2"
+        <button
+          type="button"
+          className="inline-block border border-gray-300 rounded px-5 py-2 text-gray-600 hover:bg-gray-100"
         >
           Older Posts →
-        </a>
+        </button>
       </div>
     </Layout>
   );
-}
+};
+
+export default HomePage;

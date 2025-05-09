@@ -1,15 +1,15 @@
 import { useParams, Navigate } from 'react-router-dom';
-import Layout from '../components/Layout';
-import BlogPost from '../components/BlogPost';
-import posts from '../data/posts';
-import { useMemo } from 'react';
 
-export default function PostPage() {
+import { BlogPost } from '../components/BlogPost';
+import { Layout } from '../components/Layout';
+import { posts } from '../data/posts';
+
+import type { Post } from '../components/BlogPost';
+
+function PostPage() {
   const { id } = useParams<{ id: string }>();
 
-  const post = useMemo(() => {
-    return posts.find((p) => p.id === id);
-  }, [id]);
+  const post: Post | undefined = posts.find((post) => post.id === id);
 
   if (!post) {
     return <Navigate to="/" />;
@@ -39,3 +39,6 @@ export default function PostPage() {
     </Layout>
   );
 }
+
+export { PostPage };
+export default PostPage;
