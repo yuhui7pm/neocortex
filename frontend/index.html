@@ -1,27 +1,43 @@
-<!DOCTYPE html>
+<!doctype html>
 <html lang="en">
   <head>
     <meta charset="UTF-8" />
-    <link rel="icon" type="image/svg+xml" href="/vite.svg" />
+    <link rel="icon" type="image/svg+xml" href="/favicon.ico" />
     <meta name="viewport" content="width=device-width, initial-scale=1.0" />
-    <title>Neocortex</title>
+    <title>Clean Blog - Start Bootstrap Theme</title>
+    <meta
+      name="description"
+      content="A clean, responsive blog theme based on Bootstrap and adapted for React"
+    />
+
+    <!-- Google fonts for Clean Blog theme -->
+    <link
+      href="https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic"
+      rel="stylesheet"
+      type="text/css"
+    />
+    <link
+      href="https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800"
+      rel="stylesheet"
+      type="text/css"
+    />
     <!-- Start Single Page Apps for GitHub Pages -->
     <script type="text/javascript">
       // Single Page Apps for GitHub Pages
       // MIT License - https://github.com/rafgraph/spa-github-pages
       (function (l) {
-        if (l.search[1] === "/") {
+        if (l.search[1] === '/') {
           var decoded = l.search
             .slice(1)
-            .split("&")
+            .split('&')
             .map(function (s) {
-              return s.replace(/~and~/g, "&");
+              return s.replace(/~and~/g, '&');
             })
-            .join("?");
+            .join('?');
           window.history.replaceState(
             null,
             null,
-            l.pathname.slice(0, -1) + decoded + l.hash
+            l.pathname.slice(0, -1) + decoded + l.hash,
           );
         }
       })(window.location);

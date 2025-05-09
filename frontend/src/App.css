@@ -1,8 +1,10 @@
+/* Load fonts first */
+@import url('https://fonts.googleapis.com/css?family=Lora:400,700,400italic,700italic');
+@import url('https://fonts.googleapis.com/css?family=Open+Sans:300italic,400italic,600italic,700italic,800italic,400,300,600,700,800');
+
 #root {
-  max-width: 1280px;
-  padding: 2rem;
+  width: 100%;
   margin: 0 auto;
-  text-align: center;
 }
 
 .app {
@@ -21,4 +23,192 @@ header {
 
 .read-the-docs {
   color: #888;
+}
+
+:root {
+  --primary-color: #333;
+  --secondary-color: #666;
+  --text-color: #333;
+  --light-text-color: #777;
+  --link-color: #333;
+  --link-hover-color: #000;
+  --bg-color: #fff;
+  --border-color: #eee;
+}
+
+body {
+  padding: 0;
+  margin: 0;
+  font-family: Lora, 'Times New Roman', serif;
+  font-size: 18px;
+  line-height: 1.8;
+  color: var(--text-color);
+  background-color: var(--bg-color);
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+  margin-top: 1.5rem;
+  margin-bottom: 1rem;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-weight: 700;
+}
+
+h1 {
+  font-size: 2.5rem;
+}
+
+h2 {
+  font-size: 2.2rem;
+}
+
+h3 {
+  font-size: 1.5rem;
+}
+
+a {
+  color: var(--link-color);
+  text-decoration: none;
+  transition: all 0.2s ease;
+}
+
+a:hover,
+a:focus {
+  color: var(--link-hover-color);
+}
+
+p {
+  margin: 2rem 0;
+  line-height: 1.8;
+}
+
+/* Container width */
+.container {
+  width: 100%;
+  max-width: 960px;
+  padding: 0 15px;
+}
+
+/* Clean Blog specific styles */
+.navbar-transition {
+  transition:
+    background-color 0.3s ease,
+    padding 0.3s ease,
+    box-shadow 0.3s ease;
+}
+
+.prose {
+  width: 100%;
+  max-width: 100%;
+  color: var(--text-color);
+}
+
+.prose p {
+  margin-bottom: 1.8rem;
+  font-size: 1.2rem;
+  line-height: 1.8;
+}
+
+.prose h2 {
+  margin-top: 2rem;
+  margin-bottom: 1rem;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.8rem;
+  font-weight: 600;
+}
+
+.prose h3 {
+  margin-top: 1.5rem;
+  margin-bottom: 0.75rem;
+  font-family: 'Open Sans', 'Helvetica Neue', Helvetica, Arial, sans-serif;
+  font-size: 1.5rem;
+  font-weight: 600;
+}
+
+.prose ul,
+.prose ol {
+  margin-bottom: 1.8rem;
+  margin-left: 1.5rem;
+}
+
+.prose li {
+  margin-bottom: 0.5rem;
+}
+
+.prose code {
+  padding: 0.125rem 0.25rem;
+  font-family: Menlo, Monaco, Consolas, 'Courier New', monospace;
+  font-size: 0.875em;
+  background-color: #f8f8f8;
+  border-radius: 0.2rem;
+}
+
+.prose pre {
+  padding: 1rem;
+  margin-bottom: 1.8rem;
+  overflow-x: auto;
+  background-color: #f8f8f8;
+  border-radius: 0.25rem;
+}
+
+.prose pre code {
+  padding: 0;
+  background-color: transparent;
+}
+
+.prose blockquote {
+  padding: 0.5rem 1rem;
+  margin-right: 0;
+  margin-bottom: 1.8rem;
+  margin-left: 0;
+  font-style: italic;
+  color: var(--light-text-color);
+  border-left: 3px solid #eee;
+}
+
+.prose img {
+  display: block;
+  max-width: 100%;
+  height: auto;
+  margin: 0 auto;
+}
+
+/* Fix mobile layout */
+@media (width <= 768px) {
+  h1 {
+    font-size: 2rem;
+  }
+
+  h2 {
+    font-size: 1.8rem;
+  }
+
+  h3 {
+    font-size: 1.4rem;
+  }
+
+  .prose p {
+    font-size: 1rem;
+  }
+}
+
+/* Typography adjustments */
+.site-heading {
+  margin-top: 0;
+  font-size: 50px;
+}
+
+.post-title {
+  font-size: 36px;
+}
+
+/* Remove the default bullets for UI lists */
+ul.list-none {
+  padding-left: 0;
+  margin-left: 0;
+  list-style-type: none;
 }

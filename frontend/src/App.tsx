@@ -1,25 +1,28 @@
-import { useState } from 'react';
+import { Routes, Route } from 'react-router-dom';
+
+import AboutPage from './pages/AboutPage';
+import ArchivesPage from './pages/ArchivesPage';
+import CategoriesPage from './pages/CategoriesPage';
+import CategoryPage from './pages/CategoryPage';
+import HomePage from './pages/HomePage';
+import PostPage from './pages/PostPage';
+import TagPage from './pages/TagPage';
+import TagsPage from './pages/TagsPage';
+
 import './App.css';
 
 function App() {
-  const [count, setCount] = useState(0);
-
   return (
-    <div className="app">
-      <header>
-        <h1>Neocortex</h1>
-      </header>
-      <main>
-        <div className="card">
-          <button onClick={() => setCount((count) => count + 1)}>
-            count is {count}
-          </button>
-          <p>
-            Edit <code>src/App.tsx</code> and save to test HMR
-          </p>
-        </div>
-      </main>
-    </div>
+    <Routes>
+      <Route path="/" element={<HomePage />} />
+      <Route path="/post/:id" element={<PostPage />} />
+      <Route path="/archives" element={<ArchivesPage />} />
+      <Route path="/category" element={<CategoriesPage />} />
+      <Route path="/category/:categorySlug" element={<CategoryPage />} />
+      <Route path="/tag" element={<TagsPage />} />
+      <Route path="/tag/:tagSlug" element={<TagPage />} />
+      <Route path="/about" element={<AboutPage />} />
+    </Routes>
   );
 }
 
