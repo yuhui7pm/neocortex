@@ -15,7 +15,6 @@
     "@unocss",
     "plugin:import/recommended",
     "plugin:import/typescript",
-    "plugin:sonarjs/recommended",
     "plugin:promise/recommended"
   ],
   "parser": "@typescript-eslint/parser",
@@ -47,7 +46,10 @@
   },
   "rules": {
     // 禁止使用JavaScript文件
-    "import/no-unresolved": ["error", { "ignore": ["\\.js$", "\\.jsx$"] }],
+    "import/no-unresolved": [
+      "error",
+      { "ignore": ["\\.js$", "\\.jsx$", "uno\\.css"] }
+    ],
 
     // TypeScript 严格规则
     "@typescript-eslint/no-unused-vars": [
@@ -134,9 +136,23 @@
   },
   "overrides": [
     {
-      "files": ["src/pages/**/*", "src/App.tsx", "vite.config.ts"],
+      "files": [
+        "src/pages/**/*",
+        "src/App.tsx",
+        "vite.config.ts",
+        "uno.config.ts"
+      ],
       "rules": {
         "import/no-default-export": "off"
+      }
+    },
+    {
+      "files": ["vite.config.ts", "uno.config.ts"],
+      "parserOptions": {
+        "project": ["./tsconfig.node.json"]
+      },
+      "rules": {
+        "import/order": "off"
       }
     }
   ]
