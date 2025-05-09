@@ -53,8 +53,6 @@ export default defineConfig({
       '2xl': '1536px',
     },
   },
-  // Enable strict mode for better DX
-  strict: true,
   // Check source code for invalid class names
   content: {
     pipeline: {
