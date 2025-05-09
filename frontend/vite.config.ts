@@ -39,5 +39,6 @@ export default defineConfig({
         changeOrigin: true,
       },
     },
+    open: true,
   },
 });
