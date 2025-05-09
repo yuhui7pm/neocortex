@@ -14,7 +14,9 @@ npm run dev
 
 ## Deployment
 
-This project is configured to automatically deploy to GitHub Pages when changes are pushed to the main branch. The deployment process is handled by GitHub Actions.
+This project is configured to automatically deploy to GitHub Pages when changes
+are pushed to the main branch. The deployment process is handled by GitHub
+Actions.
 
 ### Manual Deployment
 
@@ -31,3 +33,5 @@ The deployment configuration is located in:
 
 - `.github/workflows/deploy.yml` - GitHub Actions workflow
 - `vite.config.ts` - Base path configuration for GitHub Pages
+
+## Added for testing husky hooks
