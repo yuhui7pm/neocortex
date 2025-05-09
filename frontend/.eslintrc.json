@@ -8,10 +8,15 @@
   "extends": [
     "eslint:recommended",
     "plugin:@typescript-eslint/recommended",
+    "plugin:@typescript-eslint/recommended-requiring-type-checking",
     "plugin:react/recommended",
     "plugin:react-hooks/recommended",
     "plugin:react/jsx-runtime",
-    "@unocss"
+    "@unocss",
+    "plugin:import/recommended",
+    "plugin:import/typescript",
+    "plugin:sonarjs/recommended",
+    "plugin:promise/recommended"
   ],
   "parser": "@typescript-eslint/parser",
   "parserOptions": {
@@ -19,21 +24,118 @@
       "jsx": true
     },
     "ecmaVersion": "latest",
-    "sourceType": "module"
+    "sourceType": "module",
+    "project": ["./tsconfig.json"]
   },
-  "plugins": ["react", "react-hooks", "@typescript-eslint"],
+  "plugins": [
+    "react",
+    "react-hooks",
+    "@typescript-eslint",
+    "import",
+    "sonarjs",
+    "promise",
+    "no-only-tests",
+    "unicorn"
+  ],
   "settings": {
     "react": {
       "version": "detect"
+    },
+    "import/resolver": {
+      "typescript": {}
     }
   },
   "rules": {
-    "@typescript-eslint/no-unused-vars": "error",
+    // TypeScript 严格规则
+    "@typescript-eslint/no-unused-vars": [
+      "error",
+      { "argsIgnorePattern": "^_", "varsIgnorePattern": "^_" }
+    ],
     "@typescript-eslint/no-explicit-any": "error",
+    "@typescript-eslint/no-non-null-assertion": "error",
+    "@typescript-eslint/no-unnecessary-type-assertion": "error",
+    "@typescript-eslint/prefer-as-const": "error",
+    "@typescript-eslint/consistent-type-imports": "error",
+    "@typescript-eslint/no-floating-promises": "error",
+    "@typescript-eslint/no-misused-promises": "error",
+    "@typescript-eslint/await-thenable": "error",
+
+    // React 严格规则
     "react-hooks/rules-of-hooks": "error",
-    "react-hooks/exhaustive-deps": "warn",
+    "react-hooks/exhaustive-deps": "error", // 由warn提升为error
+    "react/jsx-no-target-blank": "error",
+    "react/jsx-no-useless-fragment": "error",
+    "react/no-array-index-key": "error",
     "react/prop-types": "off",
-    "no-console": ["warn", { "allow": ["warn", "error"] }],
-    "no-debugger": "error"
-  }
+
+    // 通用代码质量规则
+    "no-console": ["error", { "allow": ["warn", "error"] }],
+    "no-debugger": "error",
+    "no-alert": "error",
+    "no-param-reassign": "error",
+    "no-var": "error",
+    "prefer-const": "error",
+    "eqeqeq": ["error", "always"],
+    "curly": ["error", "all"],
+    "no-nested-ternary": "error",
+
+    // 导入规则
+    "import/no-unresolved": "error",
+    "import/no-unused-modules": "error",
+    "import/order": [
+      "error",
+      {
+        "groups": [
+          "builtin",
+          "external",
+          "internal",
+          "parent",
+          "sibling",
+          "index",
+          "object",
+          "type"
+        ],
+        "pathGroups": [
+          {
+            "pattern": "react",
+            "group": "external",
+            "position": "before"
+          }
+        ],
+        "alphabetize": {
+          "order": "asc"
+        },
+        "newlines-between": "always"
+      }
+    ],
+    "import/no-default-export": "error",
+
+    // SonarJS 规则
+    "sonarjs/cognitive-complexity": ["error", 15],
+    "sonarjs/no-duplicate-string": "error",
+    "sonarjs/no-redundant-jump": "error",
+
+    // Promise 规则
+    "promise/always-return": "error",
+    "promise/no-nesting": "error",
+
+    // Unicorn 规则
+    "unicorn/better-regex": "error",
+    "unicorn/consistent-destructuring": "error",
+    "unicorn/error-message": "error",
+    "unicorn/no-lonely-if": "error",
+    "unicorn/no-useless-undefined": "error",
+    "unicorn/prefer-spread": "error",
+
+    // 测试规则
+    "no-only-tests/no-only-tests": "error"
+  },
+  "overrides": [
+    {
+      "files": ["src/pages/**/*", "src/App.tsx", "vite.config.ts"],
+      "rules": {
+        "import/no-default-export": "off"
+      }
+    }
+  ]
 }

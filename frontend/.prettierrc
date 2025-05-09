@@ -2,10 +2,18 @@
   "semi": true,
   "singleQuote": true,
   "tabWidth": 2,
-  "trailingComma": "es5",
-  "printWidth": 100,
+  "trailingComma": "all",
+  "printWidth": 80,
   "bracketSpacing": true,
+  "arrowParens": "always",
+  "endOfLine": "lf",
+  "quoteProps": "as-needed",
+  "bracketSameLine": false,
+  "jsxSingleQuote": false,
   "plugins": ["prettier-plugin-tailwindcss"],
   "tailwindConfig": "./uno.config.ts",
-  "tailwindFunctions": ["clsx", "cn", "tv"]
+  "tailwindFunctions": ["clsx", "cn", "tv"],
+  "htmlWhitespaceSensitivity": "strict",
+  "proseWrap": "always",
+  "embeddedLanguageFormatting": "auto"
 }
