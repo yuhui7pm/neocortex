@@ -59,8 +59,8 @@ export default defineConfig({
   content: {
     pipeline: {
       include: [
-        // include tsx files
-        '**/*.{jsx,tsx,html}',
+        // only include TypeScript files
+        '**/*.{tsx,html}',
       ],
       exclude: ['node_modules/**/*', '.git/**/*', 'dist/**/*'],
     },
